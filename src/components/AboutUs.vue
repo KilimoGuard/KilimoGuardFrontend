@@ -3,7 +3,7 @@
   <section id="about" class="relative py-12">
     <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4 relative text-center">
+        <h2 class="text-4xl mb-4 relative text-center">
           About Us
           <span
               class="absolute bottom-[-1rem] left-1/2 transform -translate-x-1/2 w-16 border-b-2 border-[#008374] mt-4"></span>
@@ -16,7 +16,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Content Section -->
         <div class="flex flex-col justify-center lg:pr-8">
-          <h3 class="text-2xl font-bold mb-4">Predicting Pest Threats for Better Protection</h3>
+          <h3 class="text-2xl font-bold mb-4">Predicting Pest Threats for Better Protection </h3>
           <img src="@/assets/img/analysis.jpg" alt="Analysis" class="w-full h-auto rounded-lg mb-4 shadow-lg">
           <p class="mb-4">Our system utilizes advanced algorithms to forecast pest outbreaks, allowing farmers to take
             proactive measures to protect their crops. We prioritize accuracy and reliability to ensure timely
