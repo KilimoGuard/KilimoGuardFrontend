@@ -1,6 +1,6 @@
 <template>
   <!-- About Us Section -->
-  <section id="about" class="relative py-12 bg-gray-50">
+  <section id="about" class="relative py-12">
     <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-4 relative text-center">
