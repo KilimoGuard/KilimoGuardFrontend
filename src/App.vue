@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <kilimo-guard-navbar/>
+    <kilimo-guard-navbar class="sticky top-0 z-20"/>
     <hero-section/>
     <about-us/>
     <call-to-action/>
