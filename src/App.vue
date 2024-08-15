@@ -7,6 +7,7 @@
     <our-impact class="mt-4"/>
     <our-team />
     <f-a-q-section/>
+    <contact-section/>
   </div>
 </template>
 
@@ -19,10 +20,12 @@ import CallToAction from "@/components/ActionCall.vue";
 import OurImpact from "@/components/OurImpact.vue";
 import OurTeam from "@/components/OurTeam.vue";
 import FAQSection from "@/components/FAQComponent.vue";
+import ContactSection from "@/components/ContactUs.vue";
 
 export default {
   name: 'App',
   components: {
+    ContactSection,
     FAQSection,
     OurTeam,
     CallToAction,
