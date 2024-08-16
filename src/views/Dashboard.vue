@@ -1,31 +1,25 @@
 <template>
-  <div>
-    <kilimo-guard-navbar class="sticky top-0 z-20"/>
-    <hero-section/>
-    <about-us/>
-    <call-to-action/>
-    <our-impact class="mt-4"/>
-    <our-team/>
+  <div class="flex">
+    <SideNavbar />
+    <main class="flex-1 ml-64 p-8">
+      <!-- Main Dashboard Content -->
+      <h1 class="text-3xl font-bold">Dashboard Overview</h1>
+      <!-- Add additional dashboard content here -->
+    </main>
   </div>
 </template>
 
 <script>
-import KilimoGuardNavbar from "@/components/Navbar.vue";
-import HeroSection from "@/components/HeroSection.vue";
-import AboutUs from "@/components/AboutUs.vue";
-import CallToAction from "@/components/ActionCall.vue";
-import OurImpact from "@/components/OurImpact.vue";
-import OurTeam from "@/components/OurTeam.vue";
+import SideNavbar from '@/components/SideNavbar.vue';
 
 export default {
   name: 'DashboardPage',
   components: {
-    OurTeam,
-    CallToAction,
-    AboutUs,
-    HeroSection,
-    KilimoGuardNavbar,
-    OurImpact
-  }
-}
+    SideNavbar,
+  },
+};
 </script>
+
+<style scoped>
+/* Optional: Additional styles specific to the Dashboard page */
+</style>

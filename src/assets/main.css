@@ -1,5 +1,22 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Define Quicksand font with unique class names and weights */
+.quicksand-heading {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700; /* Example weight for headings */
+}
+
+.quicksand-body {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400; /* Example weight for body text */
+}
+
+.quicksand-light {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300; /* Example weight for lighter text */
+}
