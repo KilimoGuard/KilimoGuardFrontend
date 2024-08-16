@@ -1,18 +1,18 @@
 <template>
   <div>
     <!-- Welcome Message -->
-    <transition name="fade">
-      <div
-        v-if="!showChat && !welcomeDismissed"
-        class="fixed bottom-20 right-4 bg-dark-green text-white p-3 rounded-lg shadow-lg z-50 max-w-xs md:max-w-sm lg:max-w-md">
-        <div class="flex items-start justify-between">
-          <p class="text-sm md:text-base lg:text-lg">Hello, welcome to KilimoGuard, I’m a virtual assistant. How can I help you today?</p>
-          <button @click="dismissWelcome" class="ml-2 md:ml-4 text-white">
-            <i class="bi bi-x-lg text-lg md:text-2xl"></i>
-          </button>
-        </div>
-      </div>
-    </transition>
+<!--    <transition name="fade">-->
+<!--      <div-->
+<!--        v-if="!showChat && !welcomeDismissed"-->
+<!--        class="fixed bottom-20 right-4 bg-dark-green text-white p-3 rounded-lg shadow-lg z-50 max-w-xs md:max-w-sm lg:max-w-md">-->
+<!--        <div class="flex items-start justify-between">-->
+<!--          <p class="text-sm md:text-base lg:text-lg">Hello, welcome to KilimoGuard, I’m a virtual assistant. How can I help you today?</p>-->
+<!--          <button @click="dismissWelcome" class="ml-2 md:ml-4 text-white">-->
+<!--            <i class="bi bi-x-lg text-lg md:text-2xl"></i>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </transition>-->
 
     <!-- Chat Icon -->
     <div
