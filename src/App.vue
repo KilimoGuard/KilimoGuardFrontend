@@ -5,9 +5,10 @@
     <about-us/>
     <call-to-action/>
     <our-impact class="mt-4"/>
-    <our-team />
+    <our-team/>
     <f-a-q-section/>
     <contact-section/>
+    <chatbot/>
   </div>
 </template>
 
@@ -21,10 +22,12 @@ import OurImpact from "@/components/OurImpact.vue";
 import OurTeam from "@/components/OurTeam.vue";
 import FAQSection from "@/components/FAQComponent.vue";
 import ContactSection from "@/components/ContactUs.vue";
+import Chatbot from "@/components/ChatBot.vue";
 
 export default {
   name: 'App',
   components: {
+    Chatbot,
     ContactSection,
     FAQSection,
     OurTeam,
