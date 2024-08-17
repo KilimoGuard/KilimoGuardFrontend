@@ -49,7 +49,7 @@ export default {
         { route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI' },
         { route: '/kilimoeye', iconClass: 'bi bi-eye', text: 'KilimoEye' },
         { route: '/articles', iconClass: 'bi bi-bookmarks', text: 'Articles and More' },
-        { route: '/farming-planner', iconClass: 'bi bi-calendar2-week', text: 'Farming Planner' },
+        // { route: '/farming-planner', iconClass: 'bi bi-calendar2-week', text: 'Farming Planner' },
       ],
     };
   },
