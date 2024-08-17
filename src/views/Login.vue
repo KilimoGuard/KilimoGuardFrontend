@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LogIn',
   data() {
@@ -32,12 +34,22 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      // Handle login logic here
-      console.log('Logging in with:', this.email, this.password);
+    async handleLogin() {
+      try {
+        const response = await axios.post('http://0.0.0.0:8070/api-v1/login/', {
+          email: this.email,
+          password: this.password
+        });
 
-      // Redirect to Dashboard after login
-      this.$router.push('/dashboard');
+        // Store the token or user information in localStorage or Vuex
+        localStorage.setItem('token', response.data.access_token);
+
+        // Redirect to Dashboard after login
+        this.$router.push('/dashboard');
+      } catch (error) {
+        console.error('Login failed:', error.response?.data || error.message);
+        alert('Login failed. Please check your credentials and try again.');
+      }
     },
   },
 };
