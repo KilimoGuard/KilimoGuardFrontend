@@ -2,7 +2,7 @@
   <main-layout>
     <!-- Main Dashboard Content -->
     <div class="bg-custom-green text-white p-4">
-      <h1 class="text-3xl font-bold mb-6">Platform Dashboard</h1>
+      <h1 class="text-2xl font-semibold">Platform Dashboard</h1>
     </div>
 
     <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -32,6 +32,11 @@ const routes = [
         component: KilimoAI,
     },
     {
+        path: '/kilimoeye',
+        name: 'KilimoEye',
+        component: KilimoAI,
+    },
+    {
         path: '/farming-planner',
         name: 'farming-planner',
         component: FarmingPlanner,
