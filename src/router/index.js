@@ -3,6 +3,7 @@ import LogIn from '@/views/Login.vue';
 import SignUp from '@/views/SignUp.vue';
 import Dashboard from '@/views/Dashboard.vue';
 import KilimoAI from "@/views/KilimoAI.vue";
+import FarmingPlanner from "@/views/FarmingPlanner.vue";
 
 const routes = [
     {
@@ -29,6 +30,16 @@ const routes = [
         path: '/kilimoai',
         name: 'KilimoAI',
         component: KilimoAI,
+    },
+    {
+        path: '/kilimoeye',
+        name: 'KilimoEye',
+        component: KilimoAI,
+    },
+    {
+        path: '/farming-planner',
+        name: 'farming-planner',
+        component: FarmingPlanner,
     },
 ];
 
