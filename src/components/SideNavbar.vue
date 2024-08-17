@@ -45,7 +45,7 @@ export default {
       isExpanded: true, // Initial state of the sidebar
       username: 'John Doe', // Replace with actual username or state variable
       navItems: [
-        { route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard Overview' },
+        { route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard' },
         { route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI' },
         { route: '/kilimoeye', iconClass: 'bi bi-eye', text: 'KilimoEye' },
         { route: '/articles', iconClass: 'bi bi-bookmarks', text: 'Articles and More' },

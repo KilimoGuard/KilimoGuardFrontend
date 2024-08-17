@@ -1,7 +1,10 @@
 <template>
   <main-layout>
     <!-- Main Dashboard Content -->
-    <h1 class="text-3xl font-bold">Dashboard Overview</h1>
+    <div class="bg-custom-green text-white p-4">
+      <h1 class="text-2xl font-bold">Overview</h1>
+    </div>
+
     <!-- Add additional dashboard content here -->
   </main-layout>
 </template>
@@ -30,5 +33,7 @@ export default {
 </script>
 
 <style scoped>
-/* Optional: Additional styles specific to the Dashboard page */
+.bg-custom-green {
+  background-color: #008374;
+}
 </style>
