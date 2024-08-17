@@ -60,7 +60,7 @@ export default {
   }
 
   try {
-    const response = await axios.post('http://0.0.0.0:8070/api-v1/signup/', {
+    const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/signup/', {
       username: this.username, // Include username in the POST request
       email: this.email,
       password: this.password

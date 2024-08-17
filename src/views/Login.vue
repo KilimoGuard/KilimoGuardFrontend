@@ -36,7 +36,7 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.post('http://0.0.0.0:8070/api-v1/login/', {
+        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/login/', {
           email: this.email,
           password: this.password
         });
