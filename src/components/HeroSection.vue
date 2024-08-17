@@ -18,7 +18,7 @@
                class="inline-block font-sans font-medium text-[15px] tracking-wider px-10 py-3.5 rounded-full transition duration-300 text-white bg-white bg-opacity-10 shadow-md hover:shadow-lg hover:bg-opacity-20 border-2 border-white border-opacity-10 hover:border-opacity-50">
               ✨ Join Waitlist
             </a>
-            <a href="/predictor"
+            <a href="/login"
                class="inline-flex items-center justify-center bg-transparent text-white px-6 py-3 rounded-md transition duration-200">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="w-8 h-8 mr-2">
