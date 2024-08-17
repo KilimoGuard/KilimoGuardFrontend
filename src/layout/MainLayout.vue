@@ -1,19 +1,18 @@
+<!-- src/layouts/MainLayout.vue -->
 <template>
-  <main-layout>
-    <!-- Main Dashboard Content -->
-    <h1 class="text-3xl font-bold">Dashboard Overview</h1>
-    <!-- Add additional dashboard content here -->
-  </main-layout>
+  <div class="flex h-screen">
+    <SideNavbar @sidebar-toggle="handleSidebarToggle" />
+    <main :style="{ marginLeft: sidebarWidth }" class="flex-1 transition-all duration-300">
+      <slot></slot>
+    </main>
+  </div>
 </template>
 
 <script>
 import SideNavbar from '@/components/SideNavbar.vue';
-import MainLayout from "@/layout/MainLayout.vue";
 
 export default {
-  name: 'DashboardPage',
   components: {
-    MainLayout,
     SideNavbar,
   },
   data() {
@@ -30,5 +29,5 @@ export default {
 </script>
 
 <style scoped>
-/* Optional: Additional styles specific to the Dashboard page */
+/* Add any additional styles needed for the layout */
 </style>
