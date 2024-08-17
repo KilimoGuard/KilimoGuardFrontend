@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'SignUp',
   data() {
@@ -51,13 +53,27 @@ export default {
     };
   },
   methods: {
-    handleSignUp() {
-      // Handle sign up logic here
-      console.log('Signing up with:',this.username, this.email, this.password);
+    async handleSignUp() {
+  if (this.password !== this.confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
 
-      // Redirect to Dashboard after signup
-      this.$router.push('/dashboard');
-    },
+  try {
+    const response = await axios.post('http://0.0.0.0:8070/api-v1/signup/', {
+      username: this.username, // Include username in the POST request
+      email: this.email,
+      password: this.password
+    });
+
+    console.log('Signup successful:', response.data);
+    this.$router.push('/login');
+  } catch (error) {
+    console.error('Signup failed:', error.response?.data || error.message);
+    alert('Signup failed. Please try again.');
+  }
+}
+,
   },
 };
 </script>
