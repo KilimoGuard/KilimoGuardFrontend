@@ -11,7 +11,11 @@
       <nav class="flex-1">
         <ul class="mt-4">
           <li v-for="(item, index) in navItems" :key="index" class="mb-4 hover:bg-custom-hover flex items-center">
-            <router-link :to="item.route" class="px-5 py-4 text-lg flex items-center">
+            <router-link
+              :to="item.route"
+              :class="{'active-nav-item': isActiveRoute(item.route)}"
+              class="px-5 py-4 text-lg flex items-center"
+            >
               <i :class="item.iconClass + ' mr-3'"></i>
               <span v-if="isExpanded">{{ item.text }}</span>
             </router-link>
@@ -53,6 +57,9 @@ export default {
     toggleSidebar() {
       this.isExpanded = !this.isExpanded;
       this.$emit('sidebar-toggle', this.isExpanded);
+    },
+    isActiveRoute(route) {
+      return this.$route.path === route;
     },
   },
 };
@@ -105,5 +112,15 @@ i {
 
 .w-72 {
   width: 18rem; /* Expanded width */
+}
+
+/* Active Nav Item Style */
+.active-nav-item {
+  background-color: #006e62; /* Change this to your preferred active color */
+  font-weight: bold;
+  width: 100%; /* Fill the entire slot */
+  height: 100%; /* Fill the entire slot */
+  display: flex;
+  align-items: center;
 }
 </style>
