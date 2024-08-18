@@ -1,6 +1,6 @@
 <template>
-  <section id="team" class="team py-16">
-    <div class="container mx-auto">
+  <section id="team" class="team">
+    <div class="container mx-auto pt-6">
       <div class="section-header text-center mb-12">
         <h2 class="text-4xl mb-4 relative text-center">
           Our Team
@@ -10,13 +10,103 @@
         <p class="mt-8 text-lg text-gray-600">Meet the talented individuals behind our pest prediction system</p>
       </div>
 
-      <div class="flex flex-wrap justify-center">
-        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center">
+<!--      <div class="flex flex-wrap justify-center">-->
+<!--        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-row items-center">-->
+<!--          <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">-->
+<!--            <img src="@/assets/img/team/mike.jpeg" alt="Michael Khanda" class="w-full h-80 object-fill mb-4">-->
+<!--            <h4 class="text-xl font-bold mb-2">Michael Khanda</h4>-->
+<!--            <span class="text-gray-600">Data Scientist</span>-->
+<!--            <div class="social flex justify-center mt-4 space-x-10">-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-twitter"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-facebook"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-instagram"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-linkedin"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-row items-center">-->
+<!--          <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">-->
+<!--            <img src="@/assets/img/team/neema.jpeg" alt="Neema Mkenda" class="w-full h-80 object-cover mb-4">-->
+<!--            <h4 class="text-xl font-bold mb-2">Neema Mkenda</h4>-->
+<!--            <span class="text-gray-600">Software Engineer</span>-->
+<!--            <div class="social flex justify-center mt-4 space-x-10">-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-twitter"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-facebook"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-instagram"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-linkedin"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-row items-center">-->
+<!--          <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">-->
+<!--            <img src="@/assets/img/team/peter.jpeg" alt="Peter Mirithu" class="w-full h-80 object-cover mb-4">-->
+<!--            <h4 class="text-xl font-bold mb-2">Peter Mirithu</h4>-->
+<!--            <span class="text-gray-600">AI Engineer</span>-->
+<!--            <div class="social flex justify-center mt-4 space-x-10">-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-twitter"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-facebook"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-instagram"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-linkedin"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-row items-center">-->
+<!--          <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">-->
+<!--            <img src="@/assets/img/team/Keegan.jpg" alt="Keegan Mboya" class="w-full h-80 object-cover mb-4">-->
+<!--            <h4 class="text-xl font-bold mb-2">Keegan Mboya</h4>-->
+<!--            <span class="text-gray-600">Business Development Lead</span>-->
+<!--            <div class="social flex justify-center mt-4 space-x-10">-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-twitter"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-facebook"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-instagram"></i>-->
+<!--              </a>-->
+<!--              <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">-->
+<!--                <i class="bi bi-linkedin"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="flex flex-wrap -mx-2">
+        <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-2 mb-4">
           <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">
-            <img src="@/assets/img/team/mike.jpeg" alt="Michael Khanda" class="w-full h-80 object-fill mb-4">
+            <img src="@/assets/img/team/mike.jpeg" alt="Michael Khanda" class="w-full h-80 object-cover mb-4">
             <h4 class="text-xl font-bold mb-2">Michael Khanda</h4>
             <span class="text-gray-600">Data Scientist</span>
-            <div class="social flex justify-center mt-4 space-x-10">
+            <div class="social flex justify-center mt-4 space-x-4">
               <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">
                 <i class="bi bi-twitter"></i>
               </a>
@@ -33,12 +123,12 @@
           </div>
         </div>
 
-        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center">
+        <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-2 mb-4">
           <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">
             <img src="@/assets/img/team/neema.jpeg" alt="Neema Mkenda" class="w-full h-80 object-cover mb-4">
             <h4 class="text-xl font-bold mb-2">Neema Mkenda</h4>
             <span class="text-gray-600">Software Engineer</span>
-            <div class="social flex justify-center mt-4 space-x-10">
+            <div class="social flex justify-center mt-4 space-x-4">
               <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">
                 <i class="bi bi-twitter"></i>
               </a>
@@ -55,12 +145,12 @@
           </div>
         </div>
 
-        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center">
+        <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-2 mb-4">
           <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">
             <img src="@/assets/img/team/peter.jpeg" alt="Peter Mirithu" class="w-full h-80 object-cover mb-4">
             <h4 class="text-xl font-bold mb-2">Peter Mirithu</h4>
             <span class="text-gray-600">AI Engineer</span>
-            <div class="social flex justify-center mt-4 space-x-10">
+            <div class="social flex justify-center mt-4 space-x-4">
               <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">
                 <i class="bi bi-twitter"></i>
               </a>
@@ -77,12 +167,12 @@
           </div>
         </div>
 
-        <div class="team-member w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center">
+        <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-2 mb-4">
           <div class="member bg-white rounded-lg shadow-lg overflow-hidden text-center p-4">
             <img src="@/assets/img/team/Keegan.jpg" alt="Keegan Mboya" class="w-full h-80 object-cover mb-4">
             <h4 class="text-xl font-bold mb-2">Keegan Mboya</h4>
             <span class="text-gray-600">Business Development Lead</span>
-            <div class="social flex justify-center mt-4 space-x-10">
+            <div class="social flex justify-center mt-4 space-x-4">
               <a href="#" class="text-gray-500 hover:text-teal-600 transition-colors text-lg">
                 <i class="bi bi-twitter"></i>
               </a>
@@ -99,6 +189,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 </template>
@@ -110,6 +201,10 @@ export default {
 </script>
 
 <style scoped>
+.team-member {
+  margin-top: 10px;
+}
+
 .team .member {
   text-align: center;
   background: #fff;
