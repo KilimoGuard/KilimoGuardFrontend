@@ -65,6 +65,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
 export default {
   name: 'ChatBot',
@@ -82,16 +83,46 @@ export default {
       welcomeDismissed.value = true;
     };
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
       if (inputMessage.value.trim()) {
-        messages.value.push({id: Date.now(), text: inputMessage.value, sender: 'user'});
+        // Add user's message to the messages array
+        messages.value.push({
+          id: Date.now(),
+          text: inputMessage.value,
+          sender: 'user'
+        });
+
+        // Prepare the payload for the API request with just the question
+        const payload = {
+          question: inputMessage.value
+        };
+
+        // Clear the input field
         inputMessage.value = '';
-        // Simulate bot response
-        setTimeout(() => {
-          messages.value.push({id: Date.now(), text: 'Thank you for your message!', sender: 'bot'});
-        }, 1000);
+
+        try {
+          // Make the POST request to the backend API using Axios
+          const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query', payload);
+
+          // Add bot's response to the messages array
+          messages.value.push({
+            id: Date.now(),
+            text: response.data.text, // Access the 'text' property of the response
+            sender: 'bot'
+          });
+        } catch (error) {
+          // Handle any errors that occur during the request
+          console.error('Error while sending message:', error);
+          messages.value.push({
+            id: Date.now(),
+            text: 'Sorry, something went wrong. Please try again later.',
+            sender: 'bot'
+          });
+        }
       }
     };
+
+
 
     onMounted(() => {
       // Automatically show welcome message after mounting
