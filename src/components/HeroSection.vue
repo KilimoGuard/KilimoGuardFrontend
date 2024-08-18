@@ -39,7 +39,7 @@
     </div>
 
     <!-- Icon Boxes -->
-    <div class="relative mt-16 py-12">
+    <div class="relative mt-12">
       <!-- Decorative Background -->
       <div class="absolute bottom-0 left-0 right-0 h-[calc(50%+20px)]"></div>
       <div class="container mx-auto px-6 lg:px-8">
