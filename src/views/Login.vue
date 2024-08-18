@@ -1,15 +1,20 @@
 <template>
-  <div class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center" :style="{ backgroundImage: `url(${backgroundImage})` }">
+  <div class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
+       :style="{ backgroundImage: `url(${backgroundImage})` }">
     <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
       <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
       <form @submit.prevent="handleLogin">
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-          <input type="email" id="email" v-model="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-dark-green focus:border-dark-green" required>
+          <input type="email" id="email" v-model="email"
+                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-dark-green focus:border-dark-green"
+                 required>
         </div>
         <div class="mb-6">
           <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-          <input type="password" id="password" v-model="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-dark-green focus:border-dark-green" required>
+          <input type="password" id="password" v-model="password"
+                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-dark-green focus:border-dark-green"
+                 required>
         </div>
         <button type="submit" class="w-full bg-dark-green text-white p-2 rounded-lg hover:bg-green-700">Login</button>
       </form>
@@ -22,7 +27,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { useAuthStore } from '@/stores/auth';
 
 export default {
   name: 'LogIn',
@@ -35,24 +40,19 @@ export default {
   },
   methods: {
     async handleLogin() {
+      const authStore = useAuthStore();
       try {
-        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/login/', {
-          email: this.email,
-          password: this.password
-        });
+        await authStore.login(this.email, this.password);
 
-        // Store the token or user information in localStorage or Vuex
-        localStorage.setItem('token', response.data.access_token);
-
-        // Redirect to Dashboard after login
+        // Redirect to Dashboard after successful login
         this.$router.push('/dashboard');
       } catch (error) {
         console.error('Login failed:', error.response?.data || error.message);
         alert('Login failed. Please check your credentials and try again.');
       }
     },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
