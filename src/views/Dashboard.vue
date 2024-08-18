@@ -2,7 +2,11 @@
   <main-layout>
     <!-- Main Dashboard Content -->
     <div class="bg-custom-green text-white p-4">
-      <h1 class="text-2xl font-semibold">Platform Dashboard</h1>
+      <h1 class="text-3xl font-semibold text-white">KilimoGuard<span class="text-orange-500">.</span></h1>
+    </div>
+
+    <div class="mt-4 pl-6">
+      <p class="text-2xl font-semibold">Welcome back, {{ user?.username }}!</p>
     </div>
 
     <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -52,21 +56,31 @@
           <p>New This Month: <strong>12</strong></p>
           <p>Popular Topic: <strong>Sustainable Farming</strong></p>
         </div>
-        <router-link to="/articles" class="block mt-4 text-custom-green font-semibold hover:text-orange-500">
-          Explore Resources &rarr;
-        </router-link>
+<!--        <router-link to="/articles" class="block mt-4 text-custom-green font-semibold hover:text-orange-500">-->
+<!--          Explore Resources &rarr;-->
+<!--        </router-link>-->
       </div>
     </div>
   </main-layout>
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useAuthStore } from '@/stores/auth';
 import MainLayout from "@/layout/MainLayout.vue";
 
 export default {
   name: 'DashboardPage',
   components: {
     MainLayout,
+  },
+  setup() {
+    const authStore = useAuthStore();
+    const user = computed(() => authStore.user);
+
+    return {
+      user,
+    };
   },
 };
 </script>
