@@ -28,10 +28,11 @@
 
 <script>
 import MainLayout from "@/layout/MainLayout.vue";
+import axios from 'axios';  // Import axios
 
 export default {
   name: 'KilimoAI',
-  components: {MainLayout},
+  components: { MainLayout },
   data() {
     return {
       newMessage: '',
@@ -42,21 +43,29 @@ export default {
     sendMessage() {
       if (this.newMessage.trim() === '') return;
 
-      this.messages.push({text: this.newMessage, type: 'user'});
+      this.messages.push({ text: this.newMessage, type: 'user' });
       this.newMessage = '';
       this.$nextTick(() => {
         this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
       });
 
-      this.getAIResponse(); // Call without passing userMessage
+      this.getAIResponse(); // Call getAIResponse method
     },
-    getAIResponse() {
-      setTimeout(() => {
-        this.messages.push({text: 'This is a simulated response from KilimoAI.', type: 'ai'});
-        this.$nextTick(() => {
-          this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+    async getAIResponse() {
+      try {
+        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', {
+          question: this.newMessage  // Send the user's message as the question
         });
-      }, 1000);
+
+        this.messages.push({ text: response.data.text, type: 'ai' });
+      } catch (error) {
+        console.error('Error while getting AI response:', error);
+        this.messages.push({ text: 'Sorry, something went wrong. Please try again later.', type: 'ai' });
+      }
+
+      this.$nextTick(() => {
+        this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+      });
     },
   },
 };
