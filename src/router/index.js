@@ -7,6 +7,7 @@ import KilimoAI from '@/views/KilimoAI.vue';
 import FarmingPlanner from '@/views/FarmingPlanner.vue';
 import KilimoEye from '@/views/KilimoEye.vue';
 import ArticlesAndMore from "@/views/ArticlesAndMore.vue";
+import PestPredictor from "@/views/PestPredictor.vue";
 
 const routes = [
     {
@@ -46,6 +47,12 @@ const routes = [
         path: '/farming-planner',
         name: 'farming-planner',
         component: FarmingPlanner,
+        meta: {requiresAuth: true}, // Example of another route requiring authentication
+    },
+    {
+        path: '/pest-predictor',
+        name: 'PestPredictor',
+        component: PestPredictor,
         meta: {requiresAuth: true}, // Example of another route requiring authentication
     },
     {

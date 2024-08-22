@@ -63,6 +63,7 @@ export default {
       profilePicture: profile, // Replace with actual path to profile picture
       navItems: [
         { route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard' },
+          { route: '/pest-predictor', iconClass: 'bi bi-clipboard-data', text: 'Pest Predictor' },
         { route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI' },
         { route: '/kilimoeye', iconClass: 'bi bi-eye', text: 'KilimoEye' },
         { route: '/articles-and-more', iconClass: 'bi bi-bookmarks', text: 'Articles and More' },
