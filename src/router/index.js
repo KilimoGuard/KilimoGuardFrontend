@@ -7,6 +7,7 @@ import KilimoAI from '@/views/KilimoAI.vue';
 import FarmingPlanner from '@/views/FarmingPlanner.vue';
 import KilimoEye from '@/views/KilimoEye.vue';
 import ArticlesAndMore from "@/views/ArticlesAndMore.vue";
+import PestPredictor from "@/views/PestPredictor.vue";
 
 const routes = [
     {
@@ -49,6 +50,12 @@ const routes = [
         meta: {requiresAuth: true}, // Example of another route requiring authentication
     },
     {
+        path: '/pest-predictor',
+        name: 'PestPredictor',
+        component: PestPredictor,
+        meta: {requiresAuth: true}, // Example of another route requiring authentication
+    },
+    {
         path: '/articles-and-more',
         name: 'ArticlesAndMore',
         component: ArticlesAndMore,
@@ -67,8 +74,7 @@ router.beforeEach(async (to, from, next) => {
     authStore.initializeAuth(); // Initialize auth state on route change
 
     if (to.meta.requiresAuth && !authStore.user) {
-        // Redirect to login if the route requires authentication and the user is not logged in
-        next('/login');
+        next('/login'); // Redirect to login if the route requires authentication and the user is not logged in
     } else {
         next(); // Allow access to the route
     }

@@ -38,6 +38,18 @@
             <img src="@/assets/img/fallarmyworm.webp" alt="Fall Armyworm" class="w-full h-auto rounded-lg"/>
             <p class="mt-2 text-sm text-gray-500">Figure 2: Fall armyworm images.</p>
           </div>
+          <div class="bg-white p-6 border border-gray-200 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold mb-3">Identification:</h3>
+            <ul class="list-disc pl-5 mb-4">
+              <li>Discolouration</li>
+              <li>Wilting 🥀</li>
+              <li>Stunted Growth</li>
+              <li>Holes in Leaves 🍃 </li>
+              <li>Stalk Rot</li>
+            </ul>
+            <img src="@/assets/img/faw.webp" alt="Fall Armyworm" class="w-full h-auto rounded-lg"/>
+            <p class="mt-2 text-sm text-gray-500">Figure 3: Fall armyworm images.</p>
+          </div>
         </div>
       </section>
 

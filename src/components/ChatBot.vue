@@ -102,7 +102,7 @@ export default {
 
         try {
           // Make the POST request to the backend API using Axios
-          const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query', payload);
+          const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', payload);
 
           // Add bot's response to the messages array
           messages.value.push({

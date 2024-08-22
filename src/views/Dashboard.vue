@@ -2,14 +2,15 @@
   <main-layout>
     <!-- Main Dashboard Content -->
     <div class="bg-custom-green text-white p-4">
-      <h1 class="text-3xl font-semibold text-white">KilimoGuard<span class="text-orange-500">.</span></h1>
+      <h1 class="text-3xl font-semibold">KilimoGuard<span class="text-orange-500">.</span></h1>
     </div>
 
     <div class="mt-4 pl-6">
       <p class="text-2xl font-semibold">Welcome back, {{ user?.username }}!</p>
     </div>
 
-    <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Statistics Section -->
+    <div class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- KilimoAI Stat Card -->
       <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
         <div class="flex justify-between items-center mb-4">
@@ -18,9 +19,9 @@
         </div>
         <div class="text-3xl font-bold text-black mb-2">12,345</div>
         <p class="text-gray-600">Total Queries Answered</p>
-        <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+        <div class="mt-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
           <p>Accuracy Rate: <strong>98%</strong></p>
-          <p>Active Users: <strong>1,234</strong></p>
+          <p class="sm:ml-4">Active Users: <strong>1,234</strong></p>
         </div>
         <router-link to="/kilimoai" class="block mt-4 text-custom-green font-semibold hover:text-orange-500">
           View Details &rarr;
@@ -35,9 +36,9 @@
         </div>
         <div class="text-3xl font-bold text-black mb-2">5,678</div>
         <p class="text-gray-600">Images Analyzed</p>
-        <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+        <div class="mt-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
           <p>Diseases Detected: <strong>456</strong></p>
-          <p>Avg. Processing Time: <strong>2.5 sec</strong></p>
+          <p class="sm:ml-4">Avg. Processing Time: <strong>2.5 sec</strong></p>
         </div>
         <router-link to="/kilimoeye" class="block mt-4 text-custom-green font-semibold hover:text-orange-500">
           View Details &rarr;
@@ -52,14 +53,39 @@
         </div>
         <div class="text-3xl font-bold text-black mb-2">789</div>
         <p class="text-gray-600">Total Articles</p>
-        <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+        <div class="mt-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
           <p>New This Month: <strong>12</strong></p>
-          <p>Popular Topic: <strong>Sustainable Farming</strong></p>
+          <p class="sm:ml-4">Popular Topic: <strong>Sustainable Farming</strong></p>
         </div>
-<!--        <router-link to="/articles" class="block mt-4 text-custom-green font-semibold hover:text-orange-500">-->
-<!--          Explore Resources &rarr;-->
-<!--        </router-link>-->
+        <!-- <router-link to="/articles" class="block mt-4 text-custom-green font-semibold hover:text-orange-500">
+          Explore Resources &rarr;
+        </router-link> -->
       </div>
+    </div>
+
+    <!-- KilimoGuard Information Section -->
+    <div class="p-6 mt-2 bg-white text-gray-800 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold mb-4">About KilimoGuard</h2>
+      <p class="mb-4">KilimoGuard is at the forefront of agricultural innovation, dedicated to tackling the most pressing challenges faced by farmers today. Our mission is to deliver cutting-edge solutions that enhance crop protection, boost productivity, and promote sustainable farming practices. By harnessing the power of artificial intelligence and advanced data analytics, KilimoGuard provides farmers with the tools they need to make informed decisions and overcome the obstacles of modern agriculture.</p>
+
+      <h3 class="text-xl font-semibold mb-2">Our Focus Areas</h3>
+      <p class="mb-4">KilimoGuard addresses critical issues in agriculture through a multi-faceted approach:</p>
+      <ul class="list-disc pl-5 mb-4">
+        <li class="mb-2">**Pest Management:** Persistent pest infestations are a major threat to crop yields. Our AI-driven pest prediction model analyzes environmental conditions and historical data to forecast pest activity with high precision, enabling farmers to implement timely and effective management strategies.</li>
+        <li class="mb-2">**Chemical Overuse:** The overuse of harmful chemicals poses serious environmental and health risks. KilimoGuard advocates for sustainable farming practices that reduce dependency on pesticides, promoting eco-friendly alternatives that protect both the crops and the surrounding ecosystem.</li>
+        <li class="mb-2">**Sustainable Practices:** Our approach emphasizes the importance of adopting practices that conserve natural resources, improve soil health, and support biodiversity. We offer guidance on implementing sustainable techniques that ensure long-term agricultural viability and environmental stewardship.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mb-2">Key Features</h3>
+      <p class="mb-4">KilimoGuard offers a suite of advanced features designed to revolutionize agricultural practices:</p>
+      <ul class="list-disc pl-5 mb-4">
+        <li class="mb-2">**AI-Driven Pest Predictions:** Our sophisticated AI algorithms analyze real-time weather data and historical pest trends to predict pest outbreaks with remarkable accuracy. This allows farmers to take proactive measures, minimizing crop damage and reducing the need for reactive treatments.</li>
+        <li class="mb-2">**Sustainable Farming Practices:** We provide actionable insights and recommendations for adopting sustainable farming methods. By focusing on reducing chemical inputs and enhancing soil health, our solutions help farmers achieve better yields while preserving the environment.</li>
+        <li class="mb-2">**Enhanced Crop Protection:** KilimoGuard's technology integrates with existing farm management systems to offer real-time alerts and guidance on pest threats. This comprehensive approach ensures that farmers can implement effective crop protection strategies and maximize productivity.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mb-2">Our Vision</h3>
+      <p>KilimoGuard envisions a future where agriculture is not only more productive but also more sustainable. Our goal is to transform the agricultural landscape by integrating innovative technologies that address both current and future challenges. We aim to create a healthier environment and a more prosperous future for farmers, ensuring that agricultural practices contribute positively to the global food supply and ecosystem.</p>
     </div>
   </main-layout>
 </template>
@@ -90,39 +116,6 @@ export default {
   background-color: #008374;
 }
 
-.text-custom-green {
-  color: #008374;
-}
-
-.shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.hover\:shadow-xl:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.grid-cols-1 {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.md\:grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.lg\:grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.gap-6 {
-  gap: 1.5rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-}
-
 .font-semibold {
   font-weight: 600;
 }
@@ -131,7 +124,45 @@ export default {
   font-size: 1.875rem;
 }
 
-.font-bold {
-  font-weight: 700;
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.transition-shadow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+
+  .text-xl {
+    font-size: 1.125rem;
+  }
 }
 </style>

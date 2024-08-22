@@ -5,20 +5,22 @@
       <header class="bg-custom-green text-white p-4">
         <h1 class="text-2xl font-semibold">KilimoAI Chat</h1>
       </header>
+
       <!-- Chat Area -->
       <div class="flex-1 p-4 overflow-y-auto" ref="chatContainer">
         <div v-for="(message, index) in messages" :key="index" class="mb-4">
-          <div :class="{'text-right': message.type === 'user', 'text-left': message.type === 'ai'}">
-            <div :class="{'bg-custom-green': message.type === 'user', 'bg-gray-600': message.type === 'ai'}"
+          <div :class="{'text-right': message.sender === 'user', 'text-left': message.sender === 'bot'}">
+            <div :class="{'bg-custom-green': message.sender === 'user', 'bg-gray-600': message.sender === 'bot'}"
                  class="inline-block p-2 rounded-lg text-white">
               {{ message.text }}
             </div>
           </div>
         </div>
       </div>
+
       <!-- Input Area -->
       <div class="bg-gray-100 p-4 flex items-center">
-        <input v-model="newMessage" @keyup.enter="sendMessage" placeholder="Type your message..."
+        <input v-model="inputMessage" @keyup.enter="sendMessage" placeholder="Type your message..."
                class="flex-1 p-2 border rounded-lg"/>
         <button @click="sendMessage" class="ml-4 bg-custom-green text-white px-4 py-2 rounded-lg">Send</button>
       </div>
@@ -28,37 +30,67 @@
 
 <script>
 import MainLayout from "@/layout/MainLayout.vue";
+import axios from 'axios';
+import { ref, nextTick } from 'vue';
 
 export default {
   name: 'KilimoAI',
-  components: {MainLayout},
-  data() {
-    return {
-      newMessage: '',
-      messages: [],
-    };
-  },
-  methods: {
-    sendMessage() {
-      if (this.newMessage.trim() === '') return;
+  components: { MainLayout },
+  setup() {
+    const inputMessage = ref('');
+    const messages = ref([]);
+    const chatContainer = ref(null);
 
-      this.messages.push({text: this.newMessage, type: 'user'});
-      this.newMessage = '';
-      this.$nextTick(() => {
-        this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+    const sendMessage = async () => {
+      if (inputMessage.value.trim() === '') return;
+
+      // Add user's message to the messages array
+      messages.value.push({
+        text: inputMessage.value,
+        sender: 'user'
       });
 
-      this.getAIResponse(); // Call without passing userMessage
-    },
-    getAIResponse() {
-      setTimeout(() => {
-        this.messages.push({text: 'This is a simulated response from KilimoAI.', type: 'ai'});
-        this.$nextTick(() => {
-          this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+      const userMessage = inputMessage.value;
+      inputMessage.value = '';
+
+      await nextTick(); // Ensure DOM updates
+      scrollToBottom();
+
+      try {
+        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', {
+          question: userMessage
         });
-      }, 1000);
-    },
-  },
+
+        // Add bot's response to the messages array
+        messages.value.push({
+          text: response.data.text,
+          sender: 'bot'
+        });
+      } catch (error) {
+        console.error('Error while getting AI response:', error);
+        messages.value.push({
+          text: 'Sorry, something went wrong. Please try again later.',
+          sender: 'bot'
+        });
+      }
+
+      await nextTick(); // Ensure DOM updates
+      scrollToBottom();
+    };
+
+    const scrollToBottom = () => {
+      if (chatContainer.value) {
+        chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+      }
+    };
+
+    return {
+      inputMessage,
+      messages,
+      chatContainer,
+      sendMessage
+    };
+  }
 };
 </script>
 
