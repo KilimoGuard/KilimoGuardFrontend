@@ -67,8 +67,7 @@ router.beforeEach(async (to, from, next) => {
     authStore.initializeAuth(); // Initialize auth state on route change
 
     if (to.meta.requiresAuth && !authStore.user) {
-        // Redirect to login if the route requires authentication and the user is not logged in
-        next('/login');
+        next('/login'); // Redirect to login if the route requires authentication and the user is not logged in
     } else {
         next(); // Allow access to the route
     }
