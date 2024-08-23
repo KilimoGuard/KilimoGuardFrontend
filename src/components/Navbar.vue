@@ -2,8 +2,8 @@
   <header class="bg-[#008374] shadow-md relative">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
       <!-- Logo -->
-      <a href="#hero" class="flex items-center">
-        <h1 class="text-2xl font-semibold text-white">KilimoGuard<span class="text-orange-500 ml-1">.</span></h1>
+      <a href="/#hero-section" class="flex items-center">
+        <h1 class="text-3xl font-semibold text-white">KilimoGuard<span class="text-orange-500 ml-1">.</span></h1>
       </a>
 
       <!-- Mobile Menu Button -->
