@@ -8,7 +8,8 @@
            :href="videoLink">
           <div class="w-full h-full bg-gradient-to-r from-teal-600 to-teal-500 rounded-full flex items-center
           justify-center relative overflow-hidden">
-            <div class="absolute inset-0 animate-pulse"></div>
+            <!-- Pulsating Animation -->
+            <div class="absolute inset-0 animate-pulsate"></div>
             <i class="bi bi-play-fill text-white text-6xl"></i>
           </div>
         </a>
@@ -42,5 +43,22 @@ export default {
 </script>
 
 <style scoped>
-/* Add additional styling if needed */
+@keyframes pulsate {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}
+
+.animate-pulsate {
+  animation: pulsate 2s infinite;
+}
 </style>
