@@ -2,8 +2,8 @@
   <header class="bg-[#008374] shadow-md relative">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
       <!-- Logo -->
-      <a href="#hero" class="flex items-center">
-        <h1 class="text-2xl font-semibold text-white">KilimoGuard<span class="text-orange-500 ml-1">.</span></h1>
+      <a href="/#hero-section" class="flex items-center">
+        <h1 class="text-3xl font-semibold text-white">KilimoGuard<span class="text-orange-500 ml-1">.</span></h1>
       </a>
 
       <!-- Mobile Menu Button -->
@@ -24,11 +24,11 @@
           </button>
         </div>
         <!-- Links -->
-        <a href="#hero" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Home</a>
-        <a href="#about" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">About</a>
-        <a href="#services" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Services</a>
-        <a href="#team" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Team</a>
-        <a href="#contact" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Contact</a>
+        <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'hero-section' }" @click.prevent="scrollToSection('hero-section')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Home</a>
+        <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'about' }" @click.prevent="scrollToSection('about')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">About</a>
+        <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'services' }" @click.prevent="scrollToSection('services')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Services</a>
+        <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'our-team' }" @click.prevent="scrollToSection('our-team')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Team</a>
+        <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'contact-section' }" @click.prevent="scrollToSection('contact-section')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Contact</a>
         <a href="/questionnaire" target="_blank" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Survey</a>
         <a href="/predictor" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Pilot</a>
       </nav>
@@ -42,15 +42,54 @@ export default {
   data() {
     return {
       isMenuOpen: false,
+      activeSection: '',  // Track the active section
     };
   },
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    setActiveSection(sectionId) {
+      this.activeSection = sectionId;
+    },
+    scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        this.setActiveSection(sectionId);
+      }
+    },
+  },
+  mounted() {
+    const sections = ['hero-section', 'about', 'services', 'our-team', 'contact-section'];
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    sections.forEach(sectionId => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        observer.observe(section);
+      }
+    });
   },
 }
 </script>
 
 <style scoped>
+/* Style for the active link underline */
+.text-orange-500 {
+  font-weight: bold;
+  transition: border-color 0.3s ease-in-out;
+}
 </style>

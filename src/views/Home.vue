@@ -1,13 +1,13 @@
 <template>
   <div>
     <kilimo-guard-navbar class="sticky top-0 z-20"/>
-    <hero-section/>
-    <about-us/>
-    <call-to-action/>
-    <our-impact class="mt-4"/>
-    <our-team/>
-    <f-a-q-section/>
-    <contact-section/>
+    <hero-section id="hero-section"/>
+    <about-us id="about"/>
+    <call-to-action id="call-to-action"/>
+    <our-impact class="mt-4" id="services"/>
+    <our-team id="our-team"/>
+    <f-a-q-section id="faq"/>
+    <contact-section id="contact-section"/>
     <chatbot/>
   </div>
 </template>
