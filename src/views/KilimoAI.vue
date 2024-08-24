@@ -14,7 +14,7 @@
               class="inline-block p-2 rounded-lg text-white">
               <div v-if="message.images && message.images.length">
                 <div v-for="(image, imgIndex) in message.images" :key="imgIndex">
-                  <img :src="image" class="max-w-full rounded-lg" alt="upload"/>
+                  <img :src="image" class="max-w-full rounded-lg" alt="upload" />
                 </div>
               </div>
               <div v-else>{{ message.text }}</div>
@@ -29,7 +29,7 @@
         <!-- Image Preview Section -->
         <div v-if="previewImages.length" class="mb-4 flex flex-wrap gap-2">
           <div v-for="(image, index) in previewImages" :key="index" class="relative">
-            <img :src="image" class="max-w-xs max-h-32 object-cover rounded-lg" alt="preview"/>
+            <img :src="image" class="max-w-xs max-h-32 object-cover rounded-lg" alt="preview" />
             <button @click="removePreviewImage(index)" class="absolute top-1 right-1 text-red-500">
               <i class="bi bi-x-circle text-xl"></i>
             </button>
@@ -70,7 +70,37 @@ export default {
     const previewImages = ref([]);
     const selectedFiles = ref([]);
 
+    // const uploadImage = async () => {
+    //   return new Promise((resolve, reject) => {
+    //     if (selectedFiles.value?.length == 0) {
+    //       resolve("");
+    //     }
+    //     else {
+    //       const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/upload`;
+    //       const fd = new FormData();
+    //       fd.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
+    //       fd.append('tags', 'browser_upload');
+    //       fd.append('file', selectedFiles.value[0]);
+
+    //       fetch(url, {
+    //         method: 'POST',
+    //         body: fd,
+    //       })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //           resolve(data.secure_url)
+    //         })
+    //         .catch((error) => {
+    //           alert("Oop! Something went wrong while uploading the image");
+    //           reject(error);
+    //         });
+    //     }
+    //   })
+    // }
+
     const sendMessage = async () => {
+      // uploadImage();
+
       if (inputMessage.value.trim() === '' && !selectedFiles.value.length) return;
 
       isThinking.value = true;

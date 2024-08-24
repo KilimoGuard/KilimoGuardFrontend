@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
        :style="{ backgroundImage: `url(${backgroundImage})` }">
     <div class="w-full max-w-md bg-white shadow-lg rounded-lg">
-      <p class="text-xs sticky top-0 mt-4 ml-4 text-blue-500 hover:text-blue-700"><a href="/"><i class="bi bi-arrow-left text-2xs mr-1"></i> return to home</a></p>
+      <p class="text-xs sticky top-0 mt-4 ml-4 text-blue-500 hover:text-blue-700"><a href="/"><i class="bi bi-arrow-left text-2xs mr-1"></i> Return to home</a></p>
       <div class="pl-8 pr-8 pb-8 mt-2">
         <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
         <form @submit.prevent="handleLogin">
