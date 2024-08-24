@@ -1,7 +1,7 @@
 <template>
   <aside :class="{'w-72': isExpanded, 'w-16': !isExpanded}"
-         class="h-full bg-custom-green text-white fixed top-0 left-0 transition-width duration-300">
-    <div class="flex flex-col h-full">
+         class="h-screen bg-custom-green text-white fixed top-0 left-0 transition-width duration-300">
+    <div class="flex flex-col h-screen">
       <!-- Profile Section -->
       <div v-if="isExpanded" class="flex items-center p-4 mb-8 mt-2">
         <!-- Profile Picture -->
