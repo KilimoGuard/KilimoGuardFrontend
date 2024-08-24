@@ -1,45 +1,49 @@
 <template>
-  <aside :class="{'w-72': isExpanded, 'w-16': !isExpanded}"
-         class="h-screen bg-custom-green text-white fixed top-0 left-0 transition-width duration-300">
-    <div class="flex flex-col h-screen">
-      <!-- Profile Section -->
-      <div v-if="isExpanded" class="flex items-center p-4 mb-8 mt-2">
-        <!-- Profile Picture -->
-        <div class="w-14 h-14 rounded-full bg-gray-200 overflow-hidden mr-4">
-          <img :src="profilePicture" alt="Profile Picture" class="w-full h-full object-cover">
+  <div class="h-dvh">
+    <aside :class="{'w-72': isExpanded, 'w-16': !isExpanded}"
+           class="h-full bg-custom-green text-white fixed top-0 left-0 transition-width duration-300">
+      <div class="flex flex-col h-screen">
+        <!-- Profile Section -->
+        <div v-if="isExpanded" class="flex items-center p-4 mb-8 mt-2">
+          <!-- Profile Picture -->
+          <div class="w-14 h-14 rounded-full bg-gray-200 overflow-hidden mr-4">
+            <img :src="profilePicture" alt="Profile Picture" class="w-full h-full object-cover">
+          </div>
+          <!-- Username and Email -->
+          <div>
+            <h2 class="text-lg font-semibold">{{ user?.username }}</h2>
+            <p class="text-sm">{{ user?.email }}</p>
+          </div>
         </div>
-        <!-- Username and Email -->
-        <div>
-          <h2 class="text-lg font-semibold">{{ user?.username }}</h2>
-          <p class="text-sm">{{ user?.email }}</p>
+
+        <!-- Navbar Items -->
+        <nav class="flex-1">
+          <ul class="mt-4">
+            <li v-for="(item, index) in navItems" :key="index" class="mb-4 hover:bg-custom-hover flex items-center">
+              <router-link
+                  :to="item.route"
+                  :class="{'active-nav-item': isActiveRoute(item.route)}"
+                  class="px-5 py-4 text-lg flex items-center"
+              >
+                <i :class="item.iconClass + ' mr-3'"></i>
+                <span v-if="isExpanded">{{ item.text }}</span>
+              </router-link>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- User Info Section -->
+        <div class="absolute inset-x-0 bottom-0">
+          <button @click="logout" class="logout-button w-full">Logout</button>
+          <div class="p-4 mt-auto bg-custom-dark-green flex items-center justify-between">
+            <button @click="toggleSidebar" class="p-2 bg-custom-dark-green hover:bg-custom-hover">
+              <i :class="isExpanded ? 'bi bi-box-arrow-in-left' : 'bi bi-box-arrow-in-right'"></i>
+            </button>
+          </div>
         </div>
       </div>
-
-      <!-- Navbar Items -->
-      <nav class="flex-1">
-        <ul class="mt-4">
-          <li v-for="(item, index) in navItems" :key="index" class="mb-4 hover:bg-custom-hover flex items-center">
-            <router-link
-                :to="item.route"
-                :class="{'active-nav-item': isActiveRoute(item.route)}"
-                class="px-5 py-4 text-lg flex items-center"
-            >
-              <i :class="item.iconClass + ' mr-3'"></i>
-              <span v-if="isExpanded">{{ item.text }}</span>
-            </router-link>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- User Info Section -->
-      <button @click="logout" class="logout-button">Logout</button>
-      <div class="p-4 mt-auto bg-custom-dark-green flex items-center justify-between">
-        <button @click="toggleSidebar" class="p-2 bg-custom-dark-green hover:bg-custom-hover">
-          <i :class="isExpanded ? 'bi bi-box-arrow-in-left' : 'bi bi-box-arrow-in-right'"></i>
-        </button>
-      </div>
-    </div>
-  </aside>
+    </aside>
+  </div>
 </template>
 
 <script>
@@ -112,14 +116,6 @@ i {
   font-size: 1.25rem; /* Adjust icon size if needed */
 }
 
-.p-4 {
-  padding: 1rem;
-}
-
-.mt-auto {
-  margin-top: auto;
-}
-
 .text-sm {
   font-size: 0.875rem;
 }
@@ -130,14 +126,6 @@ i {
 
 .transition-width {
   transition: width 0.3s ease;
-}
-
-.w-16 {
-  width: 4rem; /* Collapsed width */
-}
-
-.w-72 {
-  width: 18rem; /* Expanded width */
 }
 
 .active-nav-item {
