@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useAuthStore } from '@/stores/auth';
+import {computed} from 'vue';
+import {useAuthStore} from '@/stores/auth';
 import profile from '@/assets/img/profile.jpg'
 
 export default {
@@ -62,11 +62,11 @@ export default {
       isExpanded: true, // Initial state of the sidebar
       profilePicture: profile, // Replace with actual path to profile picture
       navItems: [
-        { route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard' },
-          { route: '/pest-predictor', iconClass: 'bi bi-clipboard-data', text: 'Pest Predictor' },
-        { route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI' },
-        { route: '/kilimoeye', iconClass: 'bi bi-eye', text: 'KilimoEye' },
-        { route: '/articles-and-more', iconClass: 'bi bi-bookmarks', text: 'Articles and More' },
+        {route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard'},
+        {route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI'},
+        {route: '/pest-predictor', iconClass: 'bi bi-clipboard-data', text: 'Pest Predictor'},
+        // { route: '/kilimoeye', iconClass: 'bi bi-eye', text: 'KilimoEye' },
+        {route: '/articles-and-more', iconClass: 'bi bi-bookmarks', text: 'Articles and More'},
       ],
     };
   },
