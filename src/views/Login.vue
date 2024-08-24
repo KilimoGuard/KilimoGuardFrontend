@@ -17,8 +17,14 @@
             <input type="password" id="password" v-model="password"
                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-dark-green focus:border-dark-green"
                    required>
+          </div>          
+          <button type="submit" class="w-full bg-dark-green text-white p-2 rounded-lg hover:bg-green-700">
+          <div v-if="isLoading" style="display: flex; justify-content: center;">
+            <img src="../assets/animations/spinner.gif" width="25" height="25" alt="Spinner" />
+            <p style="padding-left: 5px;">Submitting ...</p>
           </div>
-          <button type="submit" class="w-full bg-dark-green text-white p-2 rounded-lg hover:bg-green-700">Login</button>
+          <p v-if="!isLoading">Login</p>          
+        </button>
         </form>
         <p class="mt-4 text-center text-sm text-gray-600">
           Don't have an account?
@@ -30,26 +36,31 @@
 </template>
 
 <script>
-import {useAuthStore} from '@/stores/auth';
+import { useAuthStore } from '@/stores/auth';
+import { ref } from 'vue';
 
 export default {
   name: 'LogIn',
-  data() {
-    return {
-      email: '',
-      password: '',
+  setup() {
+    const isLoading = ref(false);        
+    return {      
+      isLoading,
+      email: "",
+      password: "",
       backgroundImage: require('@/assets/img/smartfarming.webp'), // Adjust the path as needed
     };
   },
   methods: {
     async handleLogin() {
+      this.isLoading = true;
       const authStore = useAuthStore();
       try {
         await authStore.login(this.email, this.password);
-
+        this.isLoading = false;
         // Redirect to Dashboard after successful login
         this.$router.push('/dashboard');
       } catch (error) {
+        this.isLoading = false;
         console.error('Login failed:', error.response?.data || error.message);
         alert('Login failed. Please check your credentials and try again.');
       }
