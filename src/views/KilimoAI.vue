@@ -42,7 +42,8 @@
         </label>
         <!-- Message Input and Send Button -->
         <div class="flex items-center">
-          <input v-model="inputMessage" placeholder="Type your message..." class="flex-1 p-2 border rounded-lg" />
+          <input v-model="inputMessage" @keyup.enter="sendMessage" placeholder="Type your message..."
+          class="flex-1 p-2 border rounded-lg"/>
           <button @click="sendMessage" class="ml-4 bg-custom-green text-white px-4 py-2 rounded-lg">Send</button>
         </div>
       </div>
@@ -59,7 +60,7 @@ export default {
   name: 'KilimoAI',
   components: { MainLayout },
   setup() {
-    const inputMessage = ref('');
+    let inputMessage = ref('');
     const messages = ref([{
       id: Date.now(),
       text: "Hello, welcome to KilimoGuard, I’m a KilimoAI 🌱😊. How can I help you today?",
@@ -118,19 +119,23 @@ export default {
           reader.readAsDataURL(file);
         });
       }
-
+      
+      let userMessage = inputMessage.value;
+      
       // Handle text messages
       if (inputMessage.value.trim()) {
-        messages.value.push({ text: inputMessage.value, sender: 'user' });
+        messages.value.push({ text: inputMessage.value, sender: 'user' });        
         inputMessage.value = ''; // Clear the text input
       }
 
       await nextTick(); // Ensure DOM updates
       scrollToBottom();
 
+      console.log(inputMessage.value)
+
       try {
         const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', {
-          question: inputMessage.value
+          question: userMessage
         });
 
         // Add bot's response to the messages array
@@ -168,7 +173,12 @@ export default {
       }
     };
 
+    const handleInput = (event) => {
+      console.log(event);
+    }
+
     return {
+      handleInput,
       inputMessage,
       messages,
       chatContainer,
