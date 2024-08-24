@@ -12,18 +12,39 @@
           <div :class="{ 'text-right': message.sender === 'user', 'text-left': message.sender === 'bot' }">
             <div :class="{ 'bg-custom-green': message.sender === 'user', 'bg-gray-600': message.sender === 'bot' }"
               class="inline-block p-2 rounded-lg text-white">
-              {{ message.text }}
+              <div v-if="message.images && message.images.length">
+                <div v-for="(image, imgIndex) in message.images" :key="imgIndex">
+                  <img :src="image" class="max-w-full rounded-lg" alt="upload" />
+                </div>
+              </div>
+              <div v-else>{{ message.text }}</div>
             </div>
           </div>
         </div>
-        <img v-if="isThinking" src="../assets/animations/typing.gif" width="80" height="80">
+        <img v-if="isThinking" src="../assets/animations/typing.gif" width="80" height="80" alt="loading">
       </div>
 
       <!-- Input Area -->
-      <div class="bg-gray-100 p-4 flex items-center">
-        <input v-model="inputMessage" @keyup.enter="sendMessage" placeholder="Type your message..."
-          class="flex-1 p-2 border rounded-lg" />
-        <button @click="sendMessage" class="ml-4 bg-custom-green text-white px-4 py-2 rounded-lg">Send</button>
+      <div class="bg-gray-100 p-4 flex flex-col">
+        <!-- Image Preview Section -->
+        <div v-if="previewImages.length" class="mb-4 flex flex-wrap gap-2">
+          <div v-for="(image, index) in previewImages" :key="index" class="relative">
+            <img :src="image" class="max-w-xs max-h-32 object-cover rounded-lg" alt="preview" />
+            <button @click="removePreviewImage(index)" class="absolute top-1 right-1 text-red-500">
+              <i class="bi bi-x-circle text-xl"></i>
+            </button>
+          </div>
+        </div>
+        <!-- File Upload Icon -->
+        <label for="file-upload" class="cursor-pointer mb-2 text-gray-600 hover:text-gray-900">
+          <i class="bi bi-image text-xl"></i>
+          <input type="file" id="file-upload" @change="handleFileUpload" multiple class="hidden" />
+        </label>
+        <!-- Message Input and Send Button -->
+        <div class="flex items-center">
+          <input v-model="inputMessage" placeholder="Type your message..." class="flex-1 p-2 border rounded-lg" />
+          <button @click="sendMessage" class="ml-4 bg-custom-green text-white px-4 py-2 rounded-lg">Send</button>
+        </div>
       </div>
     </div>
   </main-layout>
@@ -46,27 +67,70 @@ export default {
     }]);
     const chatContainer = ref(null);
     const isThinking = ref(false);
+    const previewImages = ref([]);
+    const selectedFiles = ref([]);
+
+    // const uploadImage = async () => {
+    //   return new Promise((resolve, reject) => {
+    //     if (selectedFiles.value?.length == 0) {
+    //       resolve("");
+    //     }
+    //     else {
+    //       const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/upload`;
+    //       const fd = new FormData();
+    //       fd.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
+    //       fd.append('tags', 'browser_upload');
+    //       fd.append('file', selectedFiles.value[0]);
+
+    //       fetch(url, {
+    //         method: 'POST',
+    //         body: fd,
+    //       })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //           resolve(data.secure_url)
+    //         })
+    //         .catch((error) => {
+    //           alert("Oop! Something went wrong while uploading the image");
+    //           reject(error);
+    //         });
+    //     }
+    //   })
+    // }
 
     const sendMessage = async () => {
-      if (inputMessage.value.trim() === '') return;
+      // uploadImage();
+
+      if (inputMessage.value.trim() === '' && !selectedFiles.value.length) return;
 
       isThinking.value = true;
 
-      // Add user's message to the messages array
-      messages.value.push({
-        text: inputMessage.value,
-        sender: 'user'
-      });
+      // Handle image uploads
+      if (selectedFiles.value.length > 0) {
+        selectedFiles.value.forEach(file => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            messages.value.push({ images: [reader.result], sender: 'user' });
+            selectedFiles.value = []; // Clear the selected files
+            previewImages.value = []; // Clear the image previews
+            scrollToBottom();
+          };
+          reader.readAsDataURL(file);
+        });
+      }
 
-      const userMessage = inputMessage.value;
-      inputMessage.value = '';
+      // Handle text messages
+      if (inputMessage.value.trim()) {
+        messages.value.push({ text: inputMessage.value, sender: 'user' });
+        inputMessage.value = ''; // Clear the text input
+      }
 
       await nextTick(); // Ensure DOM updates
       scrollToBottom();
 
       try {
         const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', {
-          question: userMessage
+          question: inputMessage.value
         });
 
         // Add bot's response to the messages array
@@ -74,9 +138,7 @@ export default {
           text: response.data.text,
           sender: 'bot'
         });
-        isThinking.value = false;
       } catch (error) {
-        isThinking.value = false;
         console.error('Error while getting AI response:', error);
         messages.value.push({
           text: 'Sorry, something went wrong. Please try again later.',
@@ -84,8 +146,20 @@ export default {
         });
       }
 
+      isThinking.value = false;
       await nextTick(); // Ensure DOM updates
       scrollToBottom();
+    };
+
+    const handleFileUpload = (event) => {
+      const files = Array.from(event.target.files);
+      selectedFiles.value = files.filter(file => file.type.startsWith('image/'));
+      previewImages.value = selectedFiles.value.map(file => URL.createObjectURL(file));
+    };
+
+    const removePreviewImage = (index) => {
+      previewImages.value.splice(index, 1);
+      selectedFiles.value.splice(index, 1);
     };
 
     const scrollToBottom = () => {
@@ -99,7 +173,10 @@ export default {
       messages,
       chatContainer,
       sendMessage,
-      isThinking
+      isThinking,
+      handleFileUpload,
+      previewImages,
+      removePreviewImage
     };
   }
 };
