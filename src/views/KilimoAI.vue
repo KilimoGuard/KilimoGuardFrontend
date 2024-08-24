@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <img v-if="isThinking" src="../assets/animations/typing.gif" width="80" height="80">
+        <img v-if="isThinking" src="../assets/animations/typing.gif" width="80" height="80" alt="loading">
       </div>
 
       <!-- Input Area -->
