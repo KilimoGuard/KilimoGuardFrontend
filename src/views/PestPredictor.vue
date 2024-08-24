@@ -12,7 +12,7 @@
           <div class="mb-4">
             <label for="cropType" class="block text-sm font-medium text-gray-700">Crop Type</label>
             <select id="cropType" v-model="form.cropType" required
-                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-custom-green focus:ring-custom-green focus:ring-opacity-50">
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-custom-green focus:ring-custom-green focus:ring-opacity-50">
               <option value="" disabled>Select a crop type</option>
               <option value="maize">Maize</option>
               <option value="potatoes">Potatoes</option>
@@ -24,16 +24,22 @@
           <div class="mb-4">
             <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
             <input type="date" id="date" v-model="form.date" required
-                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-custom-green focus:ring-custom-green focus:ring-opacity-50"/>
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-custom-green focus:ring-custom-green focus:ring-opacity-50" />
           </div>
 
           <div class="mb-4">
             <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
             <input type="text" id="location" v-model="form.location" required
-                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-custom-green focus:ring-custom-green focus:ring-opacity-50"/>
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-custom-green focus:ring-custom-green focus:ring-opacity-50" />
           </div>
 
-          <button type="submit" class="bg-custom-green text-white px-6 py-3 rounded-lg text-lg font-medium">Submit</button>
+          <button type="submit" class="bg-custom-green text-white px-6 py-3 rounded-lg text-lg font-medium">
+            <div v-if="isLoading" style="display: flex; justify-content: center;">
+              <img src="../assets/animations/spinner.gif" width="25" height="25" alt="Spinner" />
+              <p style="padding-left: 5px;">Analyzing ...</p>
+            </div>
+            <p v-if="!isLoading">Submit</p>
+          </button>
         </form>
       </div>
 
@@ -103,9 +109,11 @@ export default {
       location: ''
     });
     const prediction = ref(null);
+    const isLoading = ref(false);
 
     const handleSubmit = async () => {
       try {
+        isLoading.value = true;
         const payload = {
           crop_type: form.value.cropType,
           date_iso: new Date(form.value.date).toISOString(),
@@ -114,13 +122,16 @@ export default {
 
         const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/predict', payload);
         prediction.value = response.data;
+        isLoading.value = false;
       } catch (error) {
+        isLoading.value = false;
         console.error('Error while fetching prediction:', error);
         prediction.value = null;
       }
     };
 
     return {
+      isLoading,
       form,
       prediction,
       handleSubmit
