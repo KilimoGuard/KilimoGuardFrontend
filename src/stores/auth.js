@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async login(email, password) {
             try {
-                const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/login/', {
+                const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/login/', {
                     email,
                     password,
                 });
@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', {
         },
         async logout() {
             try {
-                await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/logout/', {}, {
+                await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/logout/', {}, {
                     headers: {'Authorization': `Bearer ${this.token}`},
                 });
             } catch (error) {
