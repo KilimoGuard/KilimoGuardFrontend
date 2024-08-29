@@ -141,7 +141,7 @@ export default {
         await nextTick(); // Ensure DOM updates
         scrollToBottom();
                         
-        const response = await axios.post('http://0.0.0.0:8070/api-v1/process_user_query', botPayload);
+        const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/process_user_query', botPayload);
 
         // Add bot's response to the messages array
         session_id.value = response.data.session_id;
