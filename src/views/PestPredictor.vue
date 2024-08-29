@@ -120,7 +120,7 @@ export default {
           location: form.value.location
         };
 
-        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/predict', payload);
+        const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/predict', payload);
         prediction.value = response.data;
         isLoading.value = false;
       } catch (error) {

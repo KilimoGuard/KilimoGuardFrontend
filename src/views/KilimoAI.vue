@@ -43,7 +43,7 @@
         <!-- Message Input and Send Button -->
         <div class="flex items-center">
           <input v-model="inputMessage" @keyup.enter="sendMessage" placeholder="Type your message..."
-          class="flex-1 p-2 border rounded-lg"/>
+            class="flex-1 p-2 border rounded-lg" />
           <button @click="sendMessage" class="ml-4 bg-custom-green text-white px-4 py-2 rounded-lg">Send</button>
         </div>
       </div>
@@ -70,39 +70,43 @@ export default {
     const isThinking = ref(false);
     const previewImages = ref([]);
     const selectedFiles = ref([]);
+    const session_id = ref("");
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    // const uploadImage = async () => {
-    //   return new Promise((resolve, reject) => {
-    //     if (selectedFiles.value?.length == 0) {
-    //       resolve("");
-    //     }
-    //     else {
-    //       const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/upload`;
-    //       const fd = new FormData();
-    //       fd.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
-    //       fd.append('tags', 'browser_upload');
-    //       fd.append('file', selectedFiles.value[0]);
+    const uploadImage = async () => {
+      return new Promise((resolve, reject) => {
+        const url = `https://api.cloudinary.com/v1_1/${process.env.VUE_APP_CLOUDINARY_CLOUD_NAME}/upload`;
+        const fd = new FormData();
+        fd.append('upload_preset', process.env.VUE_APP_CLOUDINARY_UPLOAD_PRESET);
+        fd.append('tags', 'browser_upload');
+        fd.append('file', selectedFiles.value[0]);
 
-    //       fetch(url, {
-    //         method: 'POST',
-    //         body: fd,
-    //       })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //           resolve(data.secure_url)
-    //         })
-    //         .catch((error) => {
-    //           alert("Oop! Something went wrong while uploading the image");
-    //           reject(error);
-    //         });
-    //     }
-    //   })
-    // }
+        fetch(url, {
+          method: 'POST',
+          body: fd,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            resolve(data.secure_url)
+          })
+          .catch((error) => {
+            alert("Oop! Something went wrong while uploading the image");
+            reject(error);
+          });
+      })
+    }
 
     const sendMessage = async () => {
-      // uploadImage();
-
-      if (inputMessage.value.trim() === '' && !selectedFiles.value.length) return;
+      let imageUrl = "";
+      if (inputMessage.value.trim() === '' && selectedFiles.value.length == 0) {
+        alert("Please type some message or upload an image");
+        return;
+      }
+      else {
+        if (selectedFiles.value?.length > 0) {
+          imageUrl = await uploadImage();
+        }
+      }
 
       isThinking.value = true;
 
@@ -119,26 +123,28 @@ export default {
           reader.readAsDataURL(file);
         });
       }
-      
-      let userMessage = inputMessage.value;
-      
-      // Handle text messages
-      if (inputMessage.value.trim()) {
-        messages.value.push({ text: inputMessage.value, sender: 'user' });        
-        inputMessage.value = ''; // Clear the text input
-      }
-
-      await nextTick(); // Ensure DOM updates
-      scrollToBottom();
-
-      console.log(inputMessage.value)
 
       try {
-        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', {
-          question: userMessage
-        });
+        const botPayload = {
+          question: inputMessage.value,          
+          image_url: imageUrl,
+          user_id: user.id,
+          session_id: session_id.value
+        }
+
+        // Handle text messages
+        if (inputMessage.value.trim()) {
+          messages.value.push({ text: inputMessage.value, sender: 'user' });
+          inputMessage.value = ''; // Clear the text input
+        }
+
+        await nextTick(); // Ensure DOM updates
+        scrollToBottom();
+                        
+        const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/process_user_query', botPayload);
 
         // Add bot's response to the messages array
+        session_id.value = response.data.session_id;
         messages.value.push({
           text: response.data.text,
           sender: 'bot'

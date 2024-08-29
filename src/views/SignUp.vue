@@ -71,7 +71,7 @@ export default {
       this.isLoading = true;
 
       try {
-        const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/signup/', {
+        const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/signup/', {
           username: this.username, // Include username in the POST request
           email: this.email,
           password: this.password

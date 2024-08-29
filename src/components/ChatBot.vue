@@ -101,7 +101,11 @@ export default {
 
         // Prepare the payload for the API request with just the question
         const payload = {
-          question: inputMessage.value
+          question: inputMessage.value,          
+          image_url: "",
+          user_id: "",
+          session_id: "",
+          device_id: localStorage.getItem('deviceId')
         };
 
         // Clear the input field
@@ -109,7 +113,7 @@ export default {
 
         try {
           // Make the POST request to the backend API using Axios
-          const response = await axios.post('https://kilimoguard-backend-dev.onrender.com/api-v1/process_user_query_landing_page', payload);
+          const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api-v1/process_user_query', payload);
 
           isThinking.value = false;
 
@@ -132,10 +136,14 @@ export default {
         }
       }
     };
-
-
-
+    
     onMounted(() => {
+      let deviceId = localStorage.getItem('deviceId');
+      if (!deviceId) {
+        deviceId = `device-${Math.random().toString(36).substring(2)}-${Date.now()}`;
+        localStorage.setItem('deviceId', deviceId);
+      }
+
       // Automatically show welcome message after mounting
       setTimeout(() => {
         if (!showChat.value) {
