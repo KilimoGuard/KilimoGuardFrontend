@@ -1,10 +1,5 @@
 <template>
-  <main-layout>
-    <!-- Main Dashboard Content -->
-    <div class="bg-custom-green text-white p-4">
-      <h1 class="text-3xl font-semibold">KilimoGuard<span class="text-orange-500">.</span></h1>
-    </div>
-
+  <main-layout class="mt-12">
     <div class="mt-4 pl-6">
       <p class="text-2xl font-semibold">Welcome back, {{ user?.username }}!</p>
     </div>

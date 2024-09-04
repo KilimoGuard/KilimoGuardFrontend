@@ -1,11 +1,6 @@
 <template>
   <main-layout>
-    <div class="flex flex-col h-full">
-      <!-- Header -->
-      <header class="bg-custom-green text-white p-4">
-        <h1 class="text-3xl font-bold">Pest Predictor</h1>
-      </header>
-
+    <div class="flex flex-col h-full mt-8">
       <!-- Form Section -->
       <div class="bg-white p-6 rounded-lg shadow-lg mt-4">
         <form @submit.prevent="handleSubmit">
