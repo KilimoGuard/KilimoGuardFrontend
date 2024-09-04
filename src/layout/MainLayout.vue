@@ -2,7 +2,7 @@
 <template>
   <div class="flex h-screen">
     <SideNavbar />
-    <main class="flex-1 transition-all duration-300 mt-4">
+    <main class="flex-1 transition-all duration-300 mt-16">
       <slot></slot>
     </main>
   </div>
@@ -14,12 +14,6 @@ import SideNavbar from '@/components/SideNavbar.vue';
 export default {
   components: {
     SideNavbar,
-  },
-  data() {
-    return {
-    };
-  },
-  methods: {
   },
 };
 </script>

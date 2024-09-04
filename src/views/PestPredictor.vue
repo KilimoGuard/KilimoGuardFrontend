@@ -1,6 +1,6 @@
 <template>
   <main-layout>
-    <div class="flex flex-col h-full mt-8">
+    <div class="flex flex-col h-full mt-4">
       <!-- Form Section -->
       <div class="bg-white p-6 rounded-lg shadow-lg mt-4">
         <form @submit.prevent="handleSubmit">

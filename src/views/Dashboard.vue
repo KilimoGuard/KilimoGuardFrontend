@@ -1,5 +1,5 @@
 <template>
-  <main-layout class="mt-12">
+  <main-layout>
     <div class="mt-4 pl-6">
       <p class="text-2xl font-semibold">Welcome back, {{ user?.username }}!</p>
     </div>
