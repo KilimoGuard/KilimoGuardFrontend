@@ -182,7 +182,7 @@
 
 
 <template>
-  <header class="bg-custom-green text-white fixed w-full top-0 z-10">
+  <header class="bg-custom-green text-white fixed w-full top-0 z-10 pl-4">
     <div class="flex justify-between items-center p-4">
       <!-- Mobile Menu Button -->
       <button @click="toggleMobileMenu" class="block lg:hidden text-2xl">
@@ -193,7 +193,7 @@
       <nav class="hidden lg:flex lg:space-x-8 flex-grow">
         <router-link v-for="(item, index) in navItems" :key="index" :to="item.route"
                      :class="{ 'active-nav-item': isActiveRoute(item.route) }"
-                     class="flex items-center text-lg hover:bg-custom-hover px-4 py-2 rounded">
+                     class="flex items-center text-lg px-4 py-2 hover:text-orange-500">
           <i :class="item.iconClass + ' mr-2'"></i>
           <span>{{ item.text }}</span>
         </router-link>
@@ -205,13 +205,17 @@
         <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
           <img :src="profilePicture" alt="Profile Picture" class="w-full h-full object-cover">
         </div>
-        <!-- Username and Logout Button -->
-        <div class="hidden lg:flex items-center space-x-2">
-          <span class="text-sm">{{ user?.username }}</span>
-          <button @click="logout" class="logout-button">
-            <div v-if="isLoading" style="display: flex; justify-content: center;">
-              <img src="../assets/animations/spinner.gif" width="20" height="20" alt="Spinner"/>
-              <p style="padding-left: 5px;">Logging out ...</p>
+        <!-- Username and Dropdown -->
+        <div class="flex items-center space-x-2 cursor-pointer" @click="toggleDropdown">
+          <span class="text-lg">{{ user?.username }}</span>
+          <i :class="{'bi bi-chevron-down': !isDropdownOpen, 'bi bi-chevron-up': isDropdownOpen}"></i>
+        </div>
+        <!-- Dropdown Menu -->
+        <div v-if="isDropdownOpen" class="absolute right-4 mt-16 bg-white text-black rounded shadow-lg w-48">
+          <button @click="logout" class="logout-button w-full text-left px-4 py-2 hover:bg-gray-200">
+            <div v-if="isLoading" class="flex items-center justify-center">
+              <img src="../assets/animations/spinner.gif" width="24" height="24" alt="Spinner"/>
+              <p class="ml-2">Logging out ...</p>
             </div>
             <p v-if="!isLoading">Logout</p>
           </button>
@@ -243,8 +247,8 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
-import { useAuthStore } from '@/stores/auth';
+import {computed, ref} from 'vue';
+import {useAuthStore} from '@/stores/auth';
 import profile from '@/assets/img/profile.jpg'
 
 export default {
@@ -254,26 +258,33 @@ export default {
     const user = computed(() => authStore.user);
     const isLoading = ref(false);
     const isMobileMenuOpen = ref(false);
+    const isDropdownOpen = ref(false);
 
     const toggleMobileMenu = () => {
       isMobileMenuOpen.value = !isMobileMenuOpen.value;
+    };
+
+    const toggleDropdown = () => {
+      isDropdownOpen.value = !isDropdownOpen.value;
     };
 
     return {
       user,
       isLoading,
       isMobileMenuOpen,
+      isDropdownOpen,
       toggleMobileMenu,
+      toggleDropdown,
     };
   },
   data() {
     return {
       profilePicture: profile, // Replace with actual path to profile picture
       navItems: [
-        { route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard' },
-        { route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI' },
-        { route: '/pest-predictor', iconClass: 'bi bi-clipboard-data', text: 'Pest Predictor' },
-        { route: '/articles-and-more', iconClass: 'bi bi-bookmarks', text: 'Articles and More' },
+        {route: '/dashboard', iconClass: 'bi bi-speedometer', text: 'Dashboard'},
+        {route: '/kilimoai', iconClass: 'bi bi-chat-square-text', text: 'KilimoAI'},
+        {route: '/pest-predictor', iconClass: 'bi bi-clipboard-data', text: 'Pest Predictor'},
+        {route: '/articles-and-more', iconClass: 'bi bi-bookmarks', text: 'Articles and More'},
       ],
     };
   },
@@ -302,17 +313,11 @@ export default {
   background-color: #008374;
 }
 
-.hover\:bg-custom-hover:hover {
-  background-color: #006e62;
-  /* Darker shade for hover effect */
-}
-
 .active-nav-item {
-  background-color: #006e62;
-  /* Change this to your preferred active color */
   font-weight: bold;
   padding: 8px 12px;
-  border-radius: 5px;
+  border-bottom: 2px solid #ff7300;
+
 }
 
 .logout-button {
