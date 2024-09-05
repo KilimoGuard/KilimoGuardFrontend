@@ -1,14 +1,6 @@
 <template>
-  <main-layout>
-    <header class="bg-custom-green text-white p-4 sticky top-0 shadow-md z-10">
-      <div class="container mx-auto flex items-center justify-between">
-        <h1 class="text-3xl font-semibold">
-          KilimoGuard<span class="text-orange-500">.</span>
-        </h1>
-      </div>
-    </header>
-
-    <div class="container mx-auto p-4">
+  <main-layout class="mt-16">
+    <div class="container mx-auto">
       <section class="mb-12">
         <h2 class="text-3xl font-bold mb-6">Pests and Diseases 🦠</h2>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -1,11 +1,6 @@
 <template>
   <main-layout>
     <div class="flex flex-col h-full">
-      <!-- Chat Header -->
-      <header class="bg-custom-green text-white p-4">
-        <h1 class="text-2xl font-semibold">KilimoAI Chat</h1>
-      </header>
-
       <!-- Chat Area -->
       <div class="flex-1 p-4 overflow-y-auto" ref="chatContainer">
         <div v-for="(message, index) in messages" :key="index" class="mb-4">
