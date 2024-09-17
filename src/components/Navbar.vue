@@ -30,7 +30,7 @@
         <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'our-team' }" @click.prevent="scrollToSection('our-team')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Team</a>
         <a :class="{ 'text-orange-500 border-b-2 border-orange-500': activeSection === 'contact-section' }" @click.prevent="scrollToSection('contact-section')" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Contact</a>
         <a href="/questionnaire" target="_blank" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Survey</a>
-        <a href="/predictor" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Pilot</a>
+        <a href="/login" class="block mb-6 md:mb-0 text-white hover:text-orange-500 transition-colors duration-200">Pilot</a>
       </nav>
     </div>
   </header>
