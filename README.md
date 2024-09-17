@@ -30,6 +30,10 @@ npm run build
 ```
 npm run lint
 ```
+### Before Signing up - reboot backend URL
+```
+https://kilimoguard-backend-dev.onrender.com/
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
