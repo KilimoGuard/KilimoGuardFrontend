@@ -58,7 +58,7 @@ export default {
         await authStore.login(this.email, this.password);
         this.isLoading = false;
         // Redirect to Dashboard after successful login
-        this.$router.push('/dashboard');
+        this.$router.push('/pest-predictor');
       } catch (error) {
         this.isLoading = false;
         console.error('Login failed:', error.response?.data || error.message);
